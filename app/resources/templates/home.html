@@ -1,0 +1,14 @@
+
+<!doctype html>
+{% load static %}
+<head>
+  <link rel="stylesheet" type="text/css" href="{% static 'home.css' %}">
+  <script src="{% static 'home.js' %}"></script>
+</head>
+
+<body>
+  <h1>Hello World HTML</h1>
+  <div id="app"></div>
+  <div id="react-app"></div>
+  <script src="{% static '/dist/bundle.js' %}"></script>
+</body>
