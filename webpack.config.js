@@ -1,12 +1,11 @@
-const path = require("path");
-const webpack = require("webpack");
-var glob = require('glob');
+const path = require('path');
+const glob = require('glob');
 
 module.exports = {
   entry: glob.sync('./frontend/entrypoints/*.jsx*'),
   output: {
-    path: path.resolve(__dirname, "./app/resources/static/dist"),
-    filename: "bundle.js",
+    path: path.resolve(__dirname, './app/resources/static/dist'),
+    filename: 'bundle.js'
   },
   module: {
     rules: [
@@ -14,12 +13,12 @@ module.exports = {
         test: /\.jsx$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
-        },
-      },
-    ],
+          loader: 'babel-loader'
+        }
+      }
+    ]
   },
   optimization: {
-    minimize: true,
-  },
+    minimize: true
+  }
 };

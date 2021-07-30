@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "webpack --mode development --watch",
     "build": "webpack --mode production",
-    "test": "jest --maxWorkers=4"
+    "test": "jest --maxWorkers=4",
+    "lint": "semistandard"
   },
   "author": "zollf",
   "devDependencies": {
@@ -22,11 +23,15 @@
     "jest": "^27.0.6",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "semistandard": "^16.0.1",
     "webpack": "^5.4.0",
     "webpack-cli": "^4.2.0"
   },
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.12.1",
     "react-router-dom": "^5.2.0"
+  },
+  "semistandard": {
+    "env": [ "jest" ]
   }
 }

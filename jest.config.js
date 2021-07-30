@@ -3,8 +3,8 @@ module.exports = {
   collectCoverage: true,
   collectCoverageFrom: [
     'frontend/components/**/*.jsx',
-    '!frontend/entrypoints/*.jsx',
+    '!frontend/entrypoints/*.jsx'
   ],
   setupFilesAfterEnv: ['<rootDir>/frontend/tests/setupTests.js'],
-  testEnvironment: 'jsdom',
-}
+  testEnvironment: 'jsdom'
+};
