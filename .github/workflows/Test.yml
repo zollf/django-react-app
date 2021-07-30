@@ -24,6 +24,9 @@ jobs:
       -
         name: Run Test
         run: python app/manage.py test app
+        env:
+          DEBUG: "False"
+          SECRET_KEY: "test-secret-key"
   react:
     name: React Test
     runs-on: ubuntu-latest
