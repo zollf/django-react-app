@@ -48,11 +48,11 @@ resource "aws_lb_target_group" "target_group" {
 
   health_check {
     matcher  = "200,301,302"
-    path     = "/" 
+    path     = "/"
     interval = 300
   }
 
-  depends_on = [aws_alb.application_load_balancer] 
+  depends_on = [aws_alb.application_load_balancer]
 }
 
 

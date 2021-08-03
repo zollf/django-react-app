@@ -30,11 +30,11 @@ resource "aws_ecs_task_definition" "task" {
 }
 
 resource "aws_ecs_service" "deploy_service" {
-  name                              = "deploy_service"                 # Naming our first service
-  cluster                           = aws_ecs_cluster.cluster.id       # Referencing our created Cluster
-  task_definition                   = aws_ecs_task_definition.task.arn # Referencing the task our service will spin up
-  launch_type                       = "FARGATE"
-  desired_count                     = 1
+  name            = "deploy_service"                 # Naming our first service
+  cluster         = aws_ecs_cluster.cluster.id       # Referencing our created Cluster
+  task_definition = aws_ecs_task_definition.task.arn # Referencing the task our service will spin up
+  launch_type     = "FARGATE"
+  desired_count   = 1
 
   network_configuration {
     subnets          = ["${aws_default_subnet.default_subnet_a.id}", "${aws_default_subnet.default_subnet_b.id}", "${aws_default_subnet.default_subnet_c.id}"]
