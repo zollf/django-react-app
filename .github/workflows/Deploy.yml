@@ -101,7 +101,7 @@ jobs:
           envkey_AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           envkey_AWS_REGION: ${{ secrets.AWS_REGION }}
           envkey_DEBUG: false
-          envkey_SECRET: 'secret'
+          envkey_SECRET_KEY: 'secret'
           file_name: .env 
       -
         name: Yarn Install
