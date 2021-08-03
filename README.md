@@ -20,7 +20,7 @@ yarn
 ## Stating Django
 This will start the django server up.
 ```bash
-python app/manage.py runserver
+python app/manage.py runserver localhost:8000
 ```
 
 ## Webpack
@@ -33,4 +33,10 @@ yarn dev
 ```
 python app/manage.py test app
 yarn test
+```
+
+# Build and Run Docker Image
+```bash
+docker build -f Dockerfile -t dylan_test_app . 
+docker run -p 8000:8000 dylan_test_app 
 ```

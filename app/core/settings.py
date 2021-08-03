@@ -6,7 +6,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.getenv("DEBUG")
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "0.0.0.0", # used to run docker image locally
+    "dylan-test-app-lb-771900332.ap-southeast-2.elb.amazonaws.com", # aws lb url
+    "http://dylan-test-app-lb-771900332.ap-southeast-2.elb.amazonaws.com",
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',

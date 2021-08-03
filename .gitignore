@@ -12,3 +12,7 @@ node_modules/
 app/resources/static/dist/*.js
 app/resources/static/dist/*.txt
 coverage/
+
+# Terraform
+.terraform
+.terraform.lock.hcl
