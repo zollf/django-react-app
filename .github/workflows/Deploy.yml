@@ -94,11 +94,21 @@ jobs:
         with:
           node-version: '12.x'
       -
+        name: Make Environment File
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          envkey_AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          envkey_AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          envkey_AWS_REGION: ${{ secrets.AWS_REGION }}
+          envkey_DEBUG: false
+          envkey_SECRET: 'secret'
+          file_name: .env 
+      -
         name: Yarn Install
         run : yarn
       -
         name: Yarn Build
-        run : yarn build
+        run : yarn build    
       -
         name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
