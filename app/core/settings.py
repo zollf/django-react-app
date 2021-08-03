@@ -10,6 +10,7 @@ ALLOWED_HOSTS = [
     "0.0.0.0", # used to run docker image locally
     "dylan-test-app-lb-771900332.ap-southeast-2.elb.amazonaws.com", # aws lb url
     "http://dylan-test-app-lb-771900332.ap-southeast-2.elb.amazonaws.com",
+    "127.0.0.1", # default host
 ]
 
 INSTALLED_APPS = [

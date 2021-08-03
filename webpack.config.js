@@ -1,11 +1,16 @@
 const path = require('path');
 const glob = require('glob');
 
+const files = {};
+glob.sync('./frontend/entrypoints/*.jsx*').forEach((s) => {
+  files[s.split('/').slice(-1)[0].replace('.jsx', '')] = s;
+});
+
 module.exports = {
-  entry: glob.sync('./frontend/entrypoints/*.jsx*'),
+  entry: files,
   output: {
     path: path.resolve(__dirname, './app/resources/static/dist'),
-    filename: 'bundle.js'
+    filename: '[name].bundle.js'
   },
   module: {
     rules: [
