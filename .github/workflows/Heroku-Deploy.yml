@@ -36,11 +36,6 @@ jobs:
           node-version: '12.x'
       - name: Yarn Install
         run: yarn
-      - name: Upload Node Modules Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: node_modules
-          path: node_modules/
       - name: Yarn Test
         run: yarn test
       - name: Yarn Lint
@@ -57,8 +52,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.x'
-      -
-        name: Make Environment File
+      - name: Make Environment File
         uses: SpicyPizza/create-envfile@v1
         with:
           envkey_DEBUG: false
@@ -68,6 +62,8 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: node_modules
+      - name: Yarn Install
+        run: yarn install
       - name: Minify React
         run: yarn build
       - name: Push and Release on Heroku
