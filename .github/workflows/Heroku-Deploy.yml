@@ -1,0 +1,81 @@
+name: Heroku Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  flask:
+    name: Flask Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+          architecture: 'x64'
+      - name: Install
+        run: pip install -r requirements.txt
+      - name: Run Test
+        run: python app/manage.py test app
+        env:
+          DEBUG: "False"
+          SECRET_KEY: "test-secret-key"
+
+  react:
+    name: React Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Yarn Install
+        run: yarn
+      - name: Upload Node Modules Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: node_modules
+          path: node_modules/
+      - name: Yarn Test
+        run: yarn test
+      - name: Yarn Lint
+        run: yarn lint
+    
+  deploy:
+    name: React Test
+    runs-on: ubuntu-latest
+    needs: [react, flask]
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      -
+        name: Make Environment File
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          envkey_DEBUG: false
+          envkey_SECRET_KEY: 'secret'
+          file_name: .env 
+      - name: Download Node Modules Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: node_modules
+      - name: Minify React
+        run: yarn build
+      - name: Push and Release on Heroku
+        uses: akhileshns/heroku-deploy@v3.12.12 
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: "dylanio-test-app" 
+          heroku_email: ${{ secrets.HEROKU_EMAIL }}
+          usedocker: true
+      
+

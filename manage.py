@@ -5,8 +5,8 @@ import dotenv
 from pathlib import Path
 
 if __name__ == '__main__':
-    dotenv.read_dotenv(Path(__file__).resolve().parent.parent.joinpath('.env'))
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
+    dotenv.read_dotenv(Path(__file__).resolve().parent.joinpath('.env'))
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'app.settings')
 
     try:
         from django.core.management import execute_from_command_line

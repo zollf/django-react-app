@@ -1,9 +1,5 @@
 name: Deploy
 
-on:
-  push:
-    branches: [main]
-
 jobs:
   flask:
     name: Flask Test
@@ -70,15 +66,15 @@ jobs:
       -
         name: Terraform Check
         run : terraform -chdir=terraform fmt -check
-      -
-        name: Terraform Init
-        run : terraform -chdir=terraform init
-      -
-        name: Terraform Apply
-        run : terraform -chdir=terraform apply -auto-approve
-        env :
-          AWS_ACCESS_KEY_ID     : ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY : ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      # -
+      #   name: Terraform Init
+      #   run : terraform -chdir=terraform init
+      # -
+      #   name: Terraform Apply
+      #   run : terraform -chdir=terraform apply -auto-approve
+      #   env :
+      #     AWS_ACCESS_KEY_ID     : ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY : ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   
   deploy:
     name: Deploy
@@ -118,4 +114,4 @@ jobs:
           aws-region            : ${{ secrets.AWS_REGION }}
       -
         name: Build, tag, and push image to Amazon ECR
-        run : sh deploy.sh
+        run : sh terraform/deploy.sh

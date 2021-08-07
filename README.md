@@ -35,8 +35,14 @@ python app/manage.py test app
 yarn test
 ```
 
-# Build and Run Docker Image
+# Build and Run Docker Image for AWS
+```bash
+docker build -f terraform/Dockerfile -t dylan_test_app . 
+docker run -p 8000:8000 dylan_test_app 
+```
+
+# Build and Run Docker Image for Heroku
 ```bash
 docker build -f Dockerfile -t dylan_test_app . 
-docker run -p 8000:8000 dylan_test_app 
+docker run -e PORT=3000  -p 3000:3000 dylan_test_app 
 ```
