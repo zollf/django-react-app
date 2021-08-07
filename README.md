@@ -31,7 +31,7 @@ yarn dev
 
 # Tests
 ```
-python app/manage.py test app
+ENV="test" python manage.py test   
 yarn test
 ```
 
