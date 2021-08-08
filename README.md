@@ -15,28 +15,38 @@ Before installing, please install the prerequisites for this project
 django-react-app/
 |
 ├── app/
+|   ├── __init__.py
 |   ├── core/
 │   |   ├── __init__.py
 │   |   ├── settings.py
 │   |   ├── urls.py
 │   |   └── wsgi.py
-|   └── src/
+|   ├── resources/
+|   |   ├── static/
+|   |   └── templates/
+|   └── test_app/
+|       ├── __init__.py
+|       ├── migrations/
+|       ├── tests/
+|       ├── models.py
+|       ├── serializers.py
+|       └── views.py 
 |
+├── frontend/
+│   ├── components/
+│   ├── entrypoints/
+│   └── tests/
 |
-├── historical_data/
-│   ├── migrations/
-│   │   ├── 0001_initial.py
-│   │   └── __init__.py
-|   |
-│   ├── __init__.py
-│   ├── admin.py
-│   ├── apps.py
-│   ├── models.py
-│   ├── tests.py
-│   └── views.py
-|
+├── .env.example
+├── .gitignore
 ├── db.sqlite3
-└── manage.py
+├── Dockerfile
+├── jest.config.js
+├── manage.py
+├── package.json
+├── requirements.txt
+├── webpack.config.js
+└── yarn.lock
 ```
 
 # Installation

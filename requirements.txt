@@ -2,3 +2,5 @@ Django
 django-dotenv
 gunicorn
 whitenoise
+factory-boy
+djangorestframework
