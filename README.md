@@ -10,6 +10,35 @@ Before installing, please install the prerequisites for this project
 | python | https://www.python.org/downloads/ | https://realpython.com/installing-python/
 | yarn | after installing node run `npm install --global yarn` | https://classic.yarnpkg.com/en/docs/install/#windows-stable
 
+# File Structure
+```
+django-react-app/
+|
+├── app/
+|   ├── core/
+│   |   ├── __init__.py
+│   |   ├── settings.py
+│   |   ├── urls.py
+│   |   └── wsgi.py
+|   └── src/
+|
+|
+├── historical_data/
+│   ├── migrations/
+│   │   ├── 0001_initial.py
+│   │   └── __init__.py
+|   |
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── models.py
+│   ├── tests.py
+│   └── views.py
+|
+├── db.sqlite3
+└── manage.py
+```
+
 # Installation
 ```
 pip install -r requirements.txt

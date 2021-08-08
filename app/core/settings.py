@@ -1,26 +1,21 @@
 import os
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.getenv("DEBUG")
 
-ALLOWED_HOSTS = [
-    "0.0.0.0", # used to run docker image locally
-    "dylan-test-app-lb-771900332.ap-southeast-2.elb.amazonaws.com", # aws lb url
-    "http://dylan-test-app-lb-771900332.ap-southeast-2.elb.amazonaws.com",
-    "127.0.0.1", # default host
-    "dylanio-test-app.herokuapp.com",
-]
+ALLOWED_HOSTS = ['.herokuapp.com','127.0.0.1']
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+  'django.contrib.admin',
+  'django.contrib.auth',
+  'django.contrib.contenttypes',
+  'django.contrib.sessions',
+  'django.contrib.messages',
+  'django.contrib.staticfiles',
+  'app.test_app'
 ]
 
 MIDDLEWARE = [
@@ -34,7 +29,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'app.urls'
+ROOT_URLCONF = 'app.core.urls'
 
 TEMPLATES = [
     {
@@ -52,7 +47,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'app.wsgi.application'
+WSGI_APPLICATION = 'app.core.wsgi.application'
 
 DATABASES = {
     'default': {
@@ -83,9 +78,11 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "resources/static/")
 
-if os.getenv("ENV") != 'test':
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+if os.getenv("ENV") == 'prod':
+  STATIC_ROOT = os.path.join(BASE_DIR, "resources/static/")
+  STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+else:
+  STATICFILES_DIRS  = [os.path.join(BASE_DIR, "resources/static/")]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

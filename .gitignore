@@ -4,6 +4,7 @@
 # Django/Python
 __pycache__
 db.sqlite3
+venv
 
 # Node/React
 yarn-error.log
