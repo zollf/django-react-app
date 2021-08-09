@@ -69,14 +69,17 @@ jobs:
         run: yarn install
       - name: Minify React
         run: yarn build
-      - name: Reverse Shallow Git Clone
-        run: "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
-      - name: Push and Release on Heroku
+      - name: Heroku Deploy
         uses: akhileshns/heroku-deploy@v3.12.12 
         with:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: "dylanio-test-app" 
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
-          usedocker: true
+          justlogin: true
+        run: | 
+          heroku container:login
+          heroku container:push web
+          heroku container:release web
+
       
 
