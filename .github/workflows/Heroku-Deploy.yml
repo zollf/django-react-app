@@ -69,13 +69,14 @@ jobs:
         run: yarn install
       - name: Minify React
         run: yarn build
-      - name: Heroku Deploy
+      - name: Heroku Login
         uses: akhileshns/heroku-deploy@v3.12.12 
         with:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: "dylanio-test-app" 
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
           justlogin: true
+      - name: Heroku Deploy
         run: | 
           heroku container:login
           heroku container:push web
