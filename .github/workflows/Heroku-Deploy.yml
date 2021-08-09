@@ -69,6 +69,8 @@ jobs:
         run: yarn install
       - name: Minify React
         run: yarn build
+      - name: Reverse Shallow Git Clone
+        run: "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
       - name: Push and Release on Heroku
         uses: akhileshns/heroku-deploy@v3.12.12 
         with:
