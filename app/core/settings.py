@@ -6,7 +6,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.getenv("DEBUG")
 
-ALLOWED_HOSTS = ['.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ['.herokuapp.com','127.0.0.1', 'localhost']
 
 INSTALLED_APPS = [
   'django.contrib.admin',
@@ -50,12 +50,26 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'app.core.wsgi.application'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR.parent / 'db.sqlite3',
-    }
-}
+if os.getenv("ENV") != 'test':
+  # Using mysql server for development and production.
+  DATABASES = {
+      'default': {
+          'ENGINE': 'django.db.backends.mysql',
+          'NAME': os.getenv("MYSQL_DATABASE"),
+          'USER': os.getenv("MYSQL_USERNAME"),
+          'PASSWORD': os.getenv("MYSQL_PASSWORD"),
+          'HOST': os.getenv("MYSQL_HOST"),   # Or an IP Address that your DB is hosted on
+          'PORT': os.getenv("MYSQL_PORT"),
+      }
+  }
+else:
+  # We use sqlite3 for testing. 
+  DATABASES = {
+      'default': {
+          'ENGINE': 'django.db.backends.sqlite3',
+          'NAME': 'test_db'
+      }
+  }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -81,6 +95,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 if os.getenv("ENV") == 'prod':
+  # We only use this is prod as it will be using gunicorn
   STATIC_ROOT = os.path.join(BASE_DIR, "resources/static/")
   STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 else:

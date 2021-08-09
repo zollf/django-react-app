@@ -6,6 +6,9 @@ from pathlib import Path
 
 def main():
   dotenv.read_dotenv(Path(__file__).resolve().parent.joinpath('.env'))
+  if (sys.argv[1] == 'test'):
+    # Set ENV to test, useful for changing settings
+    os.environ['ENV'] = 'test'
   os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'app.core.settings')
 
   try:
