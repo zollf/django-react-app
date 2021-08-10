@@ -59,7 +59,7 @@ yarn
 ### Stating Django
 This will start the django server up.
 ```bash
-python manage.py runserver localhost:8000
+python manage.py runserver
 ```
 
 ### Webpack
@@ -70,7 +70,7 @@ yarn dev
 
 # Tests
 ```
-ENV="test" python manage.py test   
+python manage.py test   
 yarn test
 ```
 
