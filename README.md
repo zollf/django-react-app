@@ -6,6 +6,7 @@ Before installing, please install the prerequisites for this project
 
 | Package | Site | Guide |
 | ----------- | ----------- | ----------- |
+| mysql | | |
 | node | https://nodejs.org/en/download/ |  https://phoenixnap.com/kb/install-node-js-npm-on-windows
 | python | https://www.python.org/downloads/ | https://realpython.com/installing-python/
 | yarn | after installing node run `npm install --global yarn` | https://classic.yarnpkg.com/en/docs/install/#windows-stable
@@ -56,6 +57,8 @@ yarn
 ```
 
 # How To Start
+Please copy .env.example into a .env folder, add environment variables values if different.
+
 ### Stating Django
 This will start the django server up.
 ```bash
